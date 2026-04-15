@@ -15,7 +15,7 @@ npm install notification-service
 ### CDN (Blade / Django / Rails)
 
 ```html
-<script src="https://cdn.your-saas.com/notification-service.min.js"></script>
+<script src="https://notification-service/notification-service.min.js"></script>
 ```
 
 ---
@@ -74,7 +74,7 @@ onUnmounted(() => {
 
 ```html
 @auth
-<script src="https://cdn.your-saas.com/notification-service.min.js"></script>
+<script src="https://notification-service/notification-service.min.js"></script>
 <script>
   NotificationService.init({
       apiKey:   '{{ $customer->api_key }}',
@@ -91,7 +91,7 @@ onUnmounted(() => {
 
 ```html
 {% if user.is_authenticated %}
-<script src="https://cdn.your-saas.com/notification-service.min.js"></script>
+<script src="https://notification-service/notification-service.min.js"></script>
 <script>
   NotificationService.init({
       apiKey:   '{{ api_key }}',
