@@ -89,11 +89,6 @@
     <h2>QBits Notify — SDK Test</h2>
 
     <div>
-      <!--
-        এখানে আপনার actual values দিন।
-        api_key: আপনার DB তে customer এর api_key
-        user_id: যেকোনো number (test এর জন্য)
-    -->
       <input
         type="text"
         id="apiKey"
@@ -121,10 +116,6 @@
     <hr style="border-color: #333; margin: 20px 0" />
 
     <h2>Manual Notification Test</h2>
-    <!-- <p style="color:#888; font-size:13px">
-        এই button টা আপনার notification service এ POST /notify <br>
-        SDK connected থাকলে notification আসবে।
-    </p> -->
 
     <div>
       <input
@@ -154,11 +145,6 @@
         Notification
       </button>
     </div>
-
-    <!--
-    sdk.min.js → আপনার dist/ folder থেকে
-    অথবা CDN link বসান
--->
     <script src="./dist/sdk.min.js"></script>
 
     <script>
@@ -193,13 +179,8 @@
             apiKey: apiKey,
             userId: userId,
             onNotify: (data) => {
-              // ──────────────────────────────
-              // এখানে notification আসলে fire হবে
-              // ──────────────────────────────
               log(`NOTIFICATION Come: ${data.short_message}`, "notify");
               log(`Type: ${data.type}, ID: ${data.id}`, "notify");
-
-              // browser notification দেখাও (optional)
               if (Notification.permission === "granted") {
                 new Notification("QBits Notification", {
                   body: data.short_message,
@@ -221,13 +202,6 @@
         NotificationService.disconnect();
         log("SDK disconnected।", "error");
       }
-
-      // ─────────────────────────────────────────
-      // Test notification পাঠাও
-      //
-      // এটা আপনার notification service এ
-      // POST /api/notify করবে।
-      // ─────────────────────────────────────────
       async function sendTestNotification() {
         const apiKey = document.getElementById("notifyApiKey").value;
         const userId = parseInt(document.getElementById("notifyUserId").value);
@@ -242,16 +216,16 @@
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
-                apiKey: "ketE1bGgPmA3gBKZgbunZTWliz", // আপনার NotificationServiceTrait এ যেটা আছে
+                apiKey: "ketE1bGgPmA3gBKZgbunZTWliz", 
                 secretKey:
-                  "$2y$12$64C8Jq9cbINhzeIESnMbve/31vhJaLIn4mgc8snfXZLRAtzU7ZIF6", // সেটাই দিন
+                  "$2y$12$64C8Jq9cbINhzeIESnMbve/31vhJaLIn4mgc8snfXZLRAtzU7ZIF6",
               },
               body: JSON.stringify({
                 module_name: "order",
                 recipients: [{ user_id: userId }],
                 dynamic_data: {
                   short_message: message,
-                  channel: `qbits-${userId}`, // dash দিন
+                  channel: `qbits-${userId}`, 
                 },
               }),
             },
