@@ -1,6 +1,7 @@
 import Echo from 'laravel-echo';
 import Pusher from 'pusher-js';
 
+// const SAAS_URL = import.meta.env.VITE_SAAS_BASE_URL;
 const SAAS_URL = "http://127.0.0.1:8000/api";
 
 async function fetchConfig(apiKey, userId) {
